@@ -2,8 +2,7 @@
 ends
 ====
 Experimental DAG. This is a first pass at a prototype using Python 3 type
-annotations and function signatures to make DAG node definition seem like
-magic.
+annotations and function signatures to make DAG node definition magical.
 
 Simply register a function...
 
