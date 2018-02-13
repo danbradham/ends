@@ -46,9 +46,23 @@ From here we can register more functions, and extend our graph.
     >>> assert minus1.as_string() == 'minus(a=30.5, b=15.5)'
 
 
+One last thing I'm toying with is exposing parameters and results on the graph
+object itself. Once you expose some parameters on a graph, you can call it,
+passing in your parameters as keyword arguments. When called the exposed
+attributes will be set, and the graph will be evaluated, any exposed results
+will be returned. If multiple results are returned a dict will be returned.
+
+.. code-block:: python
+
+    >>> graph.expose(add1.a)
+    >>> graph.expose(minu1.result)
+    >>> assert graph(a=100.0) == 90.0
+
+
 What's Next?
 ============
 
+- Allow nested Graphs
 - Create a lower level node abstraction to allow users to define nodes as classes and not just functions.
 
     + Richer initialization like custom memory allocation
