@@ -55,8 +55,8 @@ class Parameter:
 class Result:
     '''Descriptor of a Func return value described by a type annotation'''
 
-    def __init__(self, annotation, parent, graph=None):
-        self.name = 'result'
+    def __init__(self, name, annotation, parent, graph=None):
+        self.name = name
         self.annotation = annotation
         self.parent = parent
         self.graph = graph
@@ -117,6 +117,7 @@ class Func:
             self.parameters.append(p)
 
         self.result = Result(
+            'result',
             self.__signature__.return_annotation,
             self,
             self.graph

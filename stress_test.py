@@ -29,7 +29,8 @@ def slow_add(a: float, b: float) -> float:
 
 
 def simple_graph():
-    print('\nCreating and validating simple_graph...', end='')
+    print('\n[]-[]-[]\n')
+    print('Creating and validating simple_graph...', end='')
     # Create a new graph
     graph = ends.new_graph('simple_graph')
 
@@ -72,12 +73,16 @@ def simple_graph():
 
     validate()
     print('OK!')
-    print('[]-[]-[]')
     return graph, add1, validate
 
 
 def complex_graph():
-    print('\nCreating and validating complex_graph...', end='')
+    print(
+        '\n   []\n'
+        '  /  \\\n'
+        '[]    []\n'
+    )
+    print('Creating and validating complex_graph...', end='')
     graph = ends.new_graph('complex_graph')
 
     def branch(node, n, leaf_nodes=None):
@@ -105,13 +110,6 @@ def complex_graph():
     graph.evaluate()
     validate()
     print('OK!')
-    print(
-        '   []\n'
-        '  /\n'
-        '[]\n'
-        '  \\\n'
-        '   []'
-    )
     return graph, root, validate
 
 
