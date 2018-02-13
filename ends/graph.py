@@ -55,26 +55,27 @@ class Graph:
 
     def unexpose(self, param_or_result=None, name=None):
         assert param_or_result or name, 'Must pass Parameter, Result, or Name'
-        name = name or param_or_result.name
 
-        if isinstance(param_or_result, Parameter):
-            self._unexpose_param(param_or_result)
-        elif isinstance(param_or_result, Result):
-            self._unexpose_result(param_or_result)
-        elif name in self.parameters:
-            self.parameters.pop(name, None)
-        elif name in self.results:
-            self.results.pop(name, None)
+        if name:
+            if self.parameters.pop(name, None):
+                return
+            if self.results.pop(name, None):
+                return
+        else:
+            if isinstance(param_or_result, Parameter):
+                p = param_or_result
+                for name, param in list(self.parameters.items()):
+                    if p is param:
+                        self.parameters.pop(name)
+                        return
+            if isinstance(param_or_result, Result):
+                r = param_or_result
+                for name, result in list(self.results.items()):
+                    if r is result:
+                        self.results.pop(name)
+                        return
 
-    def _unexpose_param(self, param):
-        for ename, eparam in list(self.parameters.values()):
-            if eparam is param:
-                self.parameters.pop(ename)
-
-    def _unexpose_result(self, result):
-        for ename, eresult in list(self.results.values()):
-            if eresult is result:
-                self.results.pop(ename)
+            raise ValueError('param_or_result must be a Parameter or Result')
 
     @property
     def evaluator(self):

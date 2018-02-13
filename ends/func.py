@@ -14,6 +14,7 @@ class Parameter:
 
     def __init__(self, name, annotation, default, parent, graph=None):
         self.name = name
+        self.path = f'{parent.name}.{name}'
         self.annotation = annotation
         self.default = default
         self.parent = parent
@@ -22,7 +23,7 @@ class Parameter:
         self._value = default
 
     def __str__(self):
-        return f'{self.parent.name}.{self.name}'
+        return self.path
 
     def check(self, value):
         if self.annotation is empty:
@@ -57,6 +58,7 @@ class Result:
 
     def __init__(self, name, annotation, parent, graph=None):
         self.name = name
+        self.path = f'{parent.name}.{name}'
         self.annotation = annotation
         self.parent = parent
         self.graph = graph
@@ -64,7 +66,7 @@ class Result:
         self._value = None
 
     def __str__(self):
-        return f'{self.parent.name}.{self.name}'
+        return self.path
 
     def check(self, value):
         if self.annotation is empty:
