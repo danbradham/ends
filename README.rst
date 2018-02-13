@@ -49,7 +49,7 @@ One last thing I'm toying with is exposing parameters and results on the graph
 object itself. Once you expose some parameters on a graph, you can call it,
 passing in your parameters as keyword arguments. When called the exposed
 attributes will be set, and the graph will be evaluated, any exposed results
-will be returned. If multiple results are returned a dict will be returned.
+will be returned. If multiple results are exposed a dict will be returned.
 
 .. code-block:: python
 
@@ -79,8 +79,14 @@ What's Next?
 - GUI
 
     + Command pattern to support undo/redo with a history stack
-    + Signals to support manipulating the graph via gui and python
+    + Signals to support manipulating the graph via gui and python
 
+- Expand string representation of graph? It's possible to represent the entire graph as one big nested function call. For example the above graph could be reprsented as the following...
+
+    .. code-block:: python
+
+        >>> minus(add(10.0, 20.5), 15.5)
+        # is this even useful though?
 
 Python 2.7 Compatability
 ========================
